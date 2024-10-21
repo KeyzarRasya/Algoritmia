@@ -17,6 +17,10 @@ mongoose.connect(DATABASE)
 
 app.use('/user', userRoutes);
 
+app.get("/", (req, res) => {
+    res.send("Welcome to Algoritmia Endpoint!")
+})
+
 app.listen(PORT || 3001, () => {
     console.log('Connected to Server');
 });

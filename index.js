@@ -3,11 +3,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const {configEnv} = require('./src/helper/config')
 const userRoutes = require('./src/routes/user')
+const cors = require('cors');
 
 const app = express();
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+app.use(cors({origin:"*"}))
 
 const {DATABASE, BASE_URI, PORT} = configEnv(process.env);
 

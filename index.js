@@ -7,9 +7,11 @@ const cors = require('cors');
 
 const app = express();
 
+app.use(cors({origin:"*"}))
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-app.use(cors({origin:"*"}))
+
+app.options('*', cors());
 
 const {DATABASE, BASE_URI, PORT} = configEnv(process.env);
 

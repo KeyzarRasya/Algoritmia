@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const {configEnv} = require('./src/helper/config')
 const userRoutes = require('./src/routes/user')
+const qrRoute = require('./src/routes/qr')
 const cors = require('cors');
 
 const app = express();
@@ -20,6 +21,7 @@ mongoose.connect(DATABASE)
 .catch(err => console.log(err));
 
 app.use('/user', userRoutes);
+app.use('/qr', qrRoute)
 
 app.get("/", (req, res) => {
     res.send("Welcome to Algoritmia Endpoint!")

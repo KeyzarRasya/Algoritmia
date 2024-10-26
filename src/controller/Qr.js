@@ -17,8 +17,8 @@ const saveQR = async(req, res) => {
 
 const scans = async (req, res) => {
     const {userId} = req.body;
-    const {qrid} = req.params
-    const qr = await scan(userId, qrid, 10)
+    const {code} = req.params
+    const qr = await scan(userId, code, 10)
     res.send(qr)
 }
 

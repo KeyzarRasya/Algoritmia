@@ -1,4 +1,5 @@
 const User = require('../model/User')
+const bcrypt = require('bcrypt')
 
 const createAccount = async (metadata) => {
     const {username, fullName, password, whatsApp} = metadata;
@@ -6,7 +7,8 @@ const createAccount = async (metadata) => {
     if(user){
         return {status:400, message:"Username already exist"};
     }
-    const newUser = new User({username, fullName, password, whatsApp});
+    let hashpass = await bcrypt.hash(password, 12);
+    const newUser = new User({username, fullName, password:hashpass, whatsApp});
     await newUser.save();
     return {status:200, message:"Account Saved"};
 }

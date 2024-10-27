@@ -34,11 +34,6 @@ userSchema.statics.findAndValidate = async function(username, password){
     return isvalid ? user : false;
 }
 
-userSchema.pre('save', async function(next) {
-    this.password = await bcrypt.hash(this.password, 12);
-    next();
-})
-
 const Model = mongoose.model('User', userSchema);
 
 module.exports = Model;
